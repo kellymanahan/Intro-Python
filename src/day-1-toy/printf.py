@@ -8,3 +8,4 @@ z = "I like turtles!"
 
 
 # Use the 'format' string method to print the same thing
+print("{} {} {}".format(10, 2.24552, "I like turtles!"))
