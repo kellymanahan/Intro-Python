@@ -47,7 +47,7 @@ def printWord( word ):
     print(prntWord)
 
 # Begin game
-print( "Welcome to Hangmn!" )
+print( "Welcome to Hangman!" )
 printWord(curWord)
 drawBody()
 print("Letters left:")
