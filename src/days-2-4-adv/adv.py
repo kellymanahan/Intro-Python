@@ -1,5 +1,7 @@
 from room import Room
 from player import Player
+from item import Item
+
 
 # Declare all the rooms
 
@@ -22,6 +24,11 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+#Add Items
+item = {
+    'gold' : Item("Gold Coin", """Shiny gold coin"""),
+    'silver' : Item("Silver Coin", """Shiny silver coin""")
+}
 
 # Link rooms together
 
@@ -34,12 +41,17 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
+
+#Add to item room
+room['foyer'].addItem(Item['Gold'])
+room['outside'].addItem(Item['Silver'])
+
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 newPlayer = Player(room['outside'])
+
 dir = ""
 # Write a loop that:
 while not dir == "q":
@@ -73,7 +85,15 @@ while not dir == "q":
             newPlayer.room = newPlayer.room.w_to
         else:
             print("Try another direction")
-   
+  
+   # Check inventory
+    elif command[1] in ["i", "inventory"]:
+        if len(newplayer.inventory) > 0:
+            print("Your inventory is:")
+            for i in newPlayer.inventory:
+                print(" " + i.description)
+        else:
+            print("There is nothing in your inventory")
 # Print an error message if the movement isn't allowed.
 # If the user enters "q", quit the game.
     elif dir == "q":
