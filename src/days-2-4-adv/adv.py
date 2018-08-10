@@ -43,7 +43,7 @@ room['treasure'].s_to = room['narrow']
 
 
 #Add to item room
-room['foyer'].addItem(item['sword'])
+room['outside'].addItem(item['sword'])
 room['overlook'].addItem(item['shield'])
 
 #treasure gold, silver
@@ -74,39 +74,38 @@ while not dir == "q":
     splt_cmd = dir.split()
     if len(splt_cmd) > 1:
             action = splt_cmd[0]
-            item = ""
-            for i in range(1, len(splt_cmd[i])):
-                item += splt_cmd[i] + " "
+    for i in range(1, len(splt_cmd[i])):
+            item += splt_cmd[i] + " "
             item = item.strip()
 
 #grabbing or dropping
-    elif action =="g" or action == "grab":
-        for i in newPlayer.room.items:
+if action =="g" or action == "grab":
+    for i in newPlayer.room.items:
             if splt_cmd[1] == i.name:
                 i.on_grab( newPlayer )
                 
-        cmd = input("you grabbed an item")
-    else:
-            print("invalid selection")
+    cmd = input("you grabbed an item")
+    # else:
+    #         print("invalid selection")
 
 #drop  
-    if action == "d" or action == "drop":
-        for i in newPlayer.room.items:
+if action == "d" or action == "drop":
+    for i in newPlayer.room.items:
             if splt_cmd[1] == i.name:
                 i.on_grab( newPlayer )
                 
-        cmd = input("you dropped an item")
-    else:
-            print("invalid selection")
+    cmd = input("you dropped an item")
+    # else:
+    #         print("invalid selection")
 #inventory
-    if cmd == "i" or cmd == "inventory":
+if cmd == "i" or cmd == "inventory":
         print("inventory: ")
         if len(newPlayer.items ) == 0:
             print("you don't have anything in your inventory")
         for i in newplayer.item:
             print("\t" + str(i))
 #score
-    elif cmd == "score":
+if cmd == "score":
         print("score: " + str(newPlayer.score) + "\n")
 # If the user enters a cardinal direction, attempt to move to the room there.
 if dir == "n":
